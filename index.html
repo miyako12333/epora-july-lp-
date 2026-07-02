@@ -101,9 +101,70 @@
     font-weight:500;
   }
   .mascot-hero{
-    width:180px;height:180px;
-    margin:0 auto 6px;
+    width:150px;height:150px;
     position:relative;
+    flex-shrink:0;
+  }
+  .hero-top-row{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-bottom:6px;
+  }
+  .cal-card{
+    background:#fff;
+    border-radius:18px;
+    padding:10px 12px 12px;
+    box-shadow:var(--shadow);
+    width:172px;
+    flex-shrink:0;
+  }
+  .cal-card .cal-title{
+    text-align:center;
+    font-family:'Zen Maru Gothic',sans-serif;
+    font-weight:900;
+    font-size:12.5px;
+    color:var(--plum);
+    margin-bottom:6px;
+  }
+  .cal-grid{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:2px;
+    text-align:center;
+  }
+  .cal-grid .dow{
+    font-size:9px;
+    font-weight:700;
+    color:var(--plum-soft);
+    padding-bottom:2px;
+  }
+  .cal-grid .day{
+    font-size:10.5px;
+    font-weight:600;
+    color:var(--plum);
+    padding:3px 0;
+    border-radius:50%;
+  }
+  .cal-grid .day.empty{visibility:hidden;}
+  .cal-grid .day.biun{
+    background:var(--coral);
+    color:#fff;
+    font-weight:900;
+    box-shadow:0 2px 4px rgba(255,122,89,.4);
+  }
+  .cal-legend{
+    display:flex;align-items:center;justify-content:center;gap:5px;
+    margin-top:7px;
+    font-size:10px;
+    font-weight:700;
+    color:var(--coral-dark);
+  }
+  .cal-legend .sw{
+    width:9px;height:9px;border-radius:50%;background:var(--coral);
+    flex-shrink:0;
   }
   .mascot-img{width:100%;height:100%;object-fit:contain;}
   .mascot-fallback{
@@ -551,12 +612,27 @@
     <h1>7月の<span>おすすめ</span>商品</h1>
     <p class="sub">アンケートにご協力ありがとうございます！<br>「おすすめを教えて」というお声にお応えして、<br>毎月6のつく日にお届けする商品案内を作ってみました♪</p>
 
-    <div class="mascot-hero">
-      <img class="mascot-img" src="mieteru-hero.png" alt="み～てるさん"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-      <div class="mascot-fallback">
-        😊
-        <div class="cap">み～てるさん<br>（画像準備中）</div>
+    <div class="hero-top-row">
+      <div class="mascot-hero">
+        <img class="mascot-img" src="mieteru-hero.png" alt="み～てるさん"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="mascot-fallback">
+          😊
+          <div class="cap">み～てるさん<br>（画像準備中）</div>
+        </div>
+      </div>
+
+      <div class="cal-card">
+        <div class="cal-title">🗓️ 7月の美運day</div>
+        <div class="cal-grid">
+          <div class="dow">日</div><div class="dow">月</div><div class="dow">火</div><div class="dow">水</div><div class="dow">木</div><div class="dow">金</div><div class="dow">土</div>
+          <div class="day empty"></div><div class="day empty"></div><div class="day empty"></div><div class="day">1</div><div class="day">2</div><div class="day">3</div><div class="day">4</div>
+          <div class="day">5</div><div class="day biun">6</div><div class="day">7</div><div class="day">8</div><div class="day">9</div><div class="day">10</div><div class="day">11</div>
+          <div class="day">12</div><div class="day">13</div><div class="day">14</div><div class="day">15</div><div class="day biun">16</div><div class="day">17</div><div class="day">18</div>
+          <div class="day">19</div><div class="day">20</div><div class="day">21</div><div class="day">22</div><div class="day">23</div><div class="day">24</div><div class="day">25</div>
+          <div class="day biun">26</div><div class="day">27</div><div class="day">28</div><div class="day">29</div><div class="day">30</div><div class="day">31</div><div class="day empty"></div>
+        </div>
+        <div class="cal-legend"><span class="sw"></span>美運の日（6・16・26）</div>
       </div>
     </div>
     <div class="speech">今月もみんなに<br>素敵な商品を紹介するね〜！</div>
