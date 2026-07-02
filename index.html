@@ -225,13 +225,15 @@
   .feature-img{
     width:100%;
     max-width:220px;
+    aspect-ratio:1/1;
     margin:0 auto 14px;
     border-radius:18px;
     overflow:hidden;
     background:#fff;
     box-shadow:var(--shadow);
+    display:flex;align-items:center;justify-content:center;
   }
-  .feature-img img{width:100%;aspect-ratio:1/1;object-fit:contain;background:#fff;}
+  .feature-img img{width:100%;height:100%;object-fit:contain;background:#fff;}
   .feature-name{
     text-align:center;
     font-size:23px;
@@ -308,9 +310,10 @@
 
   /* ---------- Product group ---------- */
   .group-head{
-    display:flex;align-items:center;gap:8px;
+    display:flex;align-items:center;justify-content:space-between;gap:8px;
     margin:6px 0 14px;
   }
+  .group-head .left{display:flex;align-items:center;gap:8px;}
   .group-head .icon{font-size:24px;}
   .group-head h3{
     font-size:18px;font-weight:900;margin:0;
@@ -444,15 +447,93 @@
   @media (max-width:360px){
     .card-grid{grid-template-columns:1fr;}
   }
+
+  /* ---------- how-to banner (under topbar) ---------- */
+  .howto-banner{
+    text-align:center;
+    padding:7px 14px 3px;
+  }
+  .howto-banner a{
+    display:inline-block;
+    font-size:12.5px;
+    font-weight:700;
+    color:var(--plum);
+    text-decoration:underline;
+    text-decoration-color:var(--coral);
+    text-underline-offset:3px;
+  }
+
+  /* ---------- back to top ---------- */
+  .totop{
+    font-size:11.5px;
+    font-weight:700;
+    color:var(--plum-soft);
+    text-decoration:none;
+    white-space:nowrap;
+    background:#fff;
+    border:1.5px solid var(--line);
+    border-radius:999px;
+    padding:5px 12px;
+    flex-shrink:0;
+  }
+  .totop:active{opacity:.6;}
+  .totop.feature{
+    position:absolute;
+    top:14px;right:14px;
+    background:rgba(255,255,255,.9);
+    z-index:2;
+  }
+
+  /* ---------- image fallback ---------- */
+  .img-fallback{
+    display:none;
+    width:100%;height:100%;
+    flex-direction:column;align-items:center;justify-content:center;
+    gap:5px;
+    font-size:32px;
+    color:var(--plum-soft);
+    text-align:center;
+    padding:8px;
+  }
+  .img-fallback .t{font-size:11px;font-weight:700;line-height:1.3;}
+  .feature-img .img-fallback{font-size:50px;}
+
+  /* ---------- president tip speech ---------- */
+  .tip-box{
+    position:relative;
+    background:#FFF3E9;
+    border:1.5px dashed var(--coral);
+    border-radius:14px;
+    padding:10px 12px;
+    margin:0 0 10px;
+    font-size:11.5px;
+    color:var(--plum);
+    font-weight:500;
+    line-height:1.6;
+  }
+  .tip-box .lbl{
+    display:flex;align-items:center;gap:4px;
+    font-size:10.5px;
+    font-weight:900;
+    color:var(--coral-dark);
+    margin-bottom:3px;
+  }
+  .tip-box.big{
+    font-size:14px;
+    padding:13px 16px;
+    margin-bottom:14px;
+  }
+  .tip-box.big .lbl{font-size:12px;}
 </style>
 </head>
-<body>
+<body id="top">
 
 <div class="topbar">
   <div class="topbar-inner">
     <a href="#worry-selector" class="topbtn a">😣 お悩み別で見る<small>一覧はこちら</small></a>
     <a href="#mieteru-pick" class="topbtn b">🌟 み～てるさん一押し<small>今月はコレ！</small></a>
   </div>
+  <div class="howto-banner"><a href="#how-to-buy">❓ どうやって注文するの？という方はこちら</a></div>
 </div>
 
 <div class="wrap">
@@ -489,6 +570,7 @@
   <!-- ===== Feature: エルローション ===== -->
   <section id="mieteru-pick">
     <div class="feature-wrap">
+      <a href="#top" class="totop feature">▲ TOP</a>
       <div class="badge-pick">🌟 今月のみ～てるさん一押し！ 🌟</div>
 
       <div class="burst">
@@ -499,11 +581,18 @@
       </div>
 
       <div class="feature-img">
-        <img src="https://d2w53g1q050m78.cloudfront.net/wwwtriplesuncojp/ec_assets/fcec388fb5ddaedf65f747ec1cb76457005720dc-original.png?1732252222" alt="エルローション300mL">
+        <img src="https://d2w53g1q050m78.cloudfront.net/wwwtriplesuncojp/ec_assets/fcec388fb5ddaedf65f747ec1cb76457005720dc-original.png?1732252222" alt="エルローション300mL"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="img-fallback">💧<span class="t">エルローション<br>300mL</span></div>
       </div>
 
       <p class="feature-name">エルローション 300mL</p>
       <p class="feature-copy">サラッとしみ込むのに、しっかりうるおう化粧水。<br>年齢に応じたたるみ毛穴ケアに人気の一本です♪</p>
+
+      <div class="tip-box big">
+        <div class="lbl">🌸 み～てるさんからの美容メッセージ</div>
+        数回に分けて、顔全体と首すじまでたっぷりと。乾燥が気になる日は、コットンに含ませて「ローションパック」にするのもおすすめよ。
+      </div>
 
       <div class="price-box">
         <div class="price-row"><span class="label">定価</span><span class="val strike">8,800円</span></div>
@@ -524,15 +613,16 @@
 
   <!-- ===== UV group ===== -->
   <section id="uv-group">
-    <div class="group-head"><span class="icon">☀️</span><h3>紫外線対策コンビ</h3></div>
+    <div class="group-head"><div class="left"><span class="icon">☀️</span><h3>紫外線対策コンビ</h3></div><a href="#top" class="totop">▲ TOPへ</a></div>
     <p class="group-desc">お肌にやさしいシラソーマ製法のUVシリーズ</p>
 
     <div class="card-grid">
       <div class="p-card" id="p-uv-day">
-        <div class="p-img"><img src="https://d2w53g1q050m78.cloudfront.net/wwwtriplesuncojp/ec_assets/f02a92cf051101ab973c94cc6100dbc0529a72b3-original.png?1732611033" alt="UVデイクリーム&ベース"></div>
+        <div class="p-img"><img src="https://d2w53g1q050m78.cloudfront.net/wwwtriplesuncojp/ec_assets/f02a92cf051101ab973c94cc6100dbc0529a72b3-original.png?1732611033" alt="UVデイクリーム&ベース" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-fallback">☀️<span class="t">UVデイクリーム<br>&ベース</span></div></div>
         <p class="p-catch">色がつかない万能UV！</p>
         <p class="p-name">UVデイクリーム&ベース</p>
         <p class="p-copy">SPF45・PA++の透明タイプ。首・デコルテなど全身に使える定番UVクリーム。</p>
+        <div class="tip-box"><div class="lbl">🌸み～てるさんより</div>化粧水のあとにパール1粒くらいの量を顔全体へ。汗をかいたら、そのタイミングで重ね塗りしてね。</div>
         <div class="p-price">
           <div class="r1">定価 5,720円</div>
           <div class="r2"><span class="t">縁内</span><span class="v">4,004<small>円</small></span></div>
@@ -541,10 +631,11 @@
       </div>
 
       <div class="p-card" id="p-uv-color">
-        <div class="p-img"><img src="https://d2w53g1q050m78.cloudfront.net/wwwtriplesuncojp/ec_assets/29be98a3086713ed4e0eb9f14b2ca8224f4947c3-original.png?1732611116" alt="カラーUV&ベース"></div>
+        <div class="p-img"><img src="https://d2w53g1q050m78.cloudfront.net/wwwtriplesuncojp/ec_assets/29be98a3086713ed4e0eb9f14b2ca8224f4947c3-original.png?1732611116" alt="カラーUV&ベース" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-fallback">🎨<span class="t">カラーUV<br>&ベース</span></div></div>
         <p class="p-catch">色つきでファンデ代わりに！</p>
         <p class="p-name">カラーUV&ベース<br>（イエロー30g）</p>
         <p class="p-copy">SPF50・PA+++。天然鉱石のベージュで肌色を選ばずナチュラルにカバー。</p>
+        <div class="tip-box"><div class="lbl">🌸み～てるさんより</div>UVデイクリーム&ベースと混ぜて下地にして、仕上げにパウダーをはたくのが私流。肌が明るく見えるのよ。</div>
         <div class="p-price">
           <div class="r1">定価 5,830円</div>
           <div class="r2"><span class="t">縁内</span><span class="v">4,081<small>円</small></span></div>
@@ -556,15 +647,16 @@
 
   <!-- ===== Scalp group ===== -->
   <section id="scalp-group">
-    <div class="group-head"><span class="icon">💇</span><h3>頭皮ケアはこれ一本</h3></div>
+    <div class="group-head"><div class="left"><span class="icon">💇</span><h3>頭皮ケアはこれ一本</h3></div><a href="#top" class="totop">▲ TOPへ</a></div>
 
     <div class="card-grid single">
       <div class="p-card wide" id="p-scalp">
-        <div class="p-img"><img src="https://d2w53g1q050m78.cloudfront.net/wwwtriplesuncojp/ec_assets/381b22917a2886be07cfde6076f0dbe8a0d3acfe-original.?1780239614" alt="スカルプガードEX"></div>
+        <div class="p-img"><img src="https://d2w53g1q050m78.cloudfront.net/wwwtriplesuncojp/ec_assets/381b22917a2886be07cfde6076f0dbe8a0d3acfe-original.?1780239614" alt="スカルプガードEX" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-fallback">💆<span class="t">スカルプガードEX</span></div></div>
         <div class="p-body">
           <p class="p-catch">頭皮のモヤモヤ、スッキリ！</p>
           <p class="p-name">スカルプガードEX</p>
           <p class="p-copy">シャンプー後に使う頭皮クレンジングローション。カラー・パーマ後のケアにもおすすめ。</p>
+          <div class="tip-box"><div class="lbl">🌸み～てるさんより</div>シャンプーを流したあとに直接スプレーして、指の腹でやさしくもみこんで。最後はしっかりすすいでね。</div>
           <div class="p-price">
             <div class="r1">定価 4,950円</div>
             <div class="r2"><span class="t">縁内</span><span class="v">3,465<small>円</small></span></div>
@@ -577,14 +669,15 @@
 
   <!-- ===== Inner care group ===== -->
   <section id="inner-group">
-    <div class="group-head"><span class="icon">✨</span><h3>内側からキレイを目指す方に</h3></div>
+    <div class="group-head"><div class="left"><span class="icon">✨</span><h3>内側からキレイを目指す方に</h3></div><a href="#top" class="totop">▲ TOPへ</a></div>
 
     <div class="card-grid">
       <div class="p-card" id="p-shirohadaboshi">
-        <div class="p-img"><img src="https://d2w53g1q050m78.cloudfront.net/wwwtriplesuncojp/ec_assets/6a608172d1b81c9e15bea4acb56e258d08614ca4-original.?1780239611" alt="白肌星Mg"></div>
+        <div class="p-img"><img src="https://d2w53g1q050m78.cloudfront.net/wwwtriplesuncojp/ec_assets/6a608172d1b81c9e15bea4acb56e258d08614ca4-original.?1780239611" alt="白肌星Mg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-fallback">✨<span class="t">白肌星Mg</span></div></div>
         <p class="p-catch">内側からキラッと透明感！</p>
         <p class="p-name">白肌星Mg</p>
         <p class="p-copy">話題のL-システインに、不足しがちなマグネシウムをプラス。薄型で飲みやすい粒。</p>
+        <div class="tip-box"><div class="lbl">🌸み～てるさんより</div>目安は1日3〜6粒。かまずに、水かお湯と一緒にどうぞ。</div>
         <div class="p-price">
           <div class="r1">定価 5,400円</div>
           <div class="r2"><span class="t">縁内</span><span class="v">3,780<small>円</small></span></div>
@@ -593,10 +686,11 @@
       </div>
 
       <div class="p-card" id="p-asukara">
-        <div class="p-img"><img src="https://d2w53g1q050m78.cloudfront.net/wwwtriplesuncojp/ec_assets/58cf974f188c08ed95813f9afbc0d6f9ec356f39-original.?1761922840" alt="アスカラダイジェスト"></div>
+        <div class="p-img"><img src="https://d2w53g1q050m78.cloudfront.net/wwwtriplesuncojp/ec_assets/58cf974f188c08ed95813f9afbc0d6f9ec356f39-original.?1761922840" alt="アスカラダイジェスト" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-fallback">🌿<span class="t">アスカラ<br>ダイジェスト</span></div></div>
         <p class="p-catch">食事の楽しみはそのままに！</p>
         <p class="p-name">アスカラダイジェスト<br><small style="font-weight:500;font-size:11px;">機能性表示食品</small></p>
         <p class="p-copy">エラグ酸配合。気になる体脂肪・体重・ウエスト周りの変化をサポート。食前に。</p>
+        <div class="tip-box"><div class="lbl">🌸み～てるさんより</div>食事の15〜30分前に、お水と一緒に。外食なら、お店に着いたらすぐ飲むのがコツよ。</div>
         <div class="p-price">
           <div class="r1">定価 3,780円</div>
           <div class="r2"><span class="t">縁内</span><span class="v">2,646<small>円</small></span></div>
